@@ -186,7 +186,9 @@
     <Compile Include="Models\PerformanceReview.cs" />
     <Compile Include="Models\Assignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AssignmentsDataService.cs" />
     <Compile Include="Services\EmployeeDataService.cs" />
+    <Compile Include="Services\IAssignmentsDataService.cs" />
     <Compile Include="Services\IEmployeeDataService.cs" />
     <Compile Include="Services\IPerformanceReviewDataService.cs" />
     <Compile Include="Services\PerformanceReviewDataService.cs" />

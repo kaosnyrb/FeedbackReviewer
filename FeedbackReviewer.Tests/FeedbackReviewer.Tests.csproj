@@ -90,8 +90,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AssignmentsControllerTests.cs" />
     <Compile Include="Controllers\EmployeesControllerTests.cs" />
     <Compile Include="Controllers\PerformanceReviewControllerTests.cs" />
+    <Compile Include="MockServices\MockAssignmentsDataService.cs" />
     <Compile Include="MockServices\MockEmployeeDataService.cs" />
     <Compile Include="MockServices\MockPerformanceReviewDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

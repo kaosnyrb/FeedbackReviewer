@@ -1,4 +1,5 @@
 ﻿using FeedbackReviewer.Models;
+using FeedbackReviewer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +9,35 @@ using System.Web.Http;
 
 namespace FeedbackReviewer.Controllers
 {
-    [RoutePrefix("api/assignments")]
+    [RoutePrefix("api")]
     public class AssignmentsController : ApiController
     {
-        [Route("{assignmentId:Guid}")]
+        public IAssignmentsDataService _assignmentsDataService;
+
+        public AssignmentsController()
+        {
+            _assignmentsDataService = new AssignmentsDataService();
+        }
+
+        [Route("myassignments/{employeeId:Guid}")]
+        [HttpGet]
+        public List<Assignment> GetEmployeesAssignments(Guid employeeId)
+        {
+            return _assignmentsDataService.GetEmployeesAssignments(employeeId);
+        }
+
+        [Route("assignments/{assignmentId:Guid}")]
         [HttpGet]
         public Assignment Get(Guid assignmentId)
         {
-            return new Assignment();
+            return _assignmentsDataService.GetAssignment(assignmentId);
         }
 
-        [Route("")]
+        [Route("assignments/")]
         [HttpPost]
-        public string Add(Assignment assignment)
+        public Assignment Post(Assignment assignment)
         {
-            return "ADDED Assignment";
+            return _assignmentsDataService.AddAssignment(assignment);
         }
     }
 }
