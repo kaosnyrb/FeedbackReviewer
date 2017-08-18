@@ -1,0 +1,6 @@
+namespace FeedbackReviewer.Areas.HelpPage.ModelDescriptions
+{
+    public class DictionaryModelDescription : KeyValuePairModelDescription
+    {
+    }
+}
