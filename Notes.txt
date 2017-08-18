@@ -1,0 +1,45 @@
+Feedback reviewer
+
+Models:
+	Employee
+		ID
+		Name
+
+	Review (Including feedback)
+		ID
+		Feedback
+
+Assignment link between Employee it's for and the review
+		ID
+		Reviewing Employee ID
+		Review ID
+
+Controllers
+
+	Employee:
+		GetAll
+		Get
+		Post
+		Put
+		Delete
+
+	Review:
+		GetAll
+		Get
+		Put
+		Post
+
+	Assignments:
+		Get (For employee)
+		Post (For Admin to assign reviews)
+
+Services
+	EmployeeService
+	
+	
+Tech choices:
+C# WebApi Restful service.
+Maybe a frontend if I have time.
+Controllers speaking to data services. Use interfaces to keep code clean and testable.
+Could use dependancy injection for data services but a little overkill.
+Splitting the review and Assignment Link to help with schema design and make it 5th normal form.
