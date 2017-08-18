@@ -188,6 +188,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmployeeDataService.cs" />
     <Compile Include="Services\IEmployeeDataService.cs" />
+    <Compile Include="Services\IPerformanceReviewDataService.cs" />
+    <Compile Include="Services\PerformanceReviewDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

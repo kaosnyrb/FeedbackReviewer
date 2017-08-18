@@ -1,4 +1,5 @@
 ﻿using FeedbackReviewer.Models;
+using FeedbackReviewer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,32 +12,39 @@ namespace FeedbackReviewer.Controllers
     [RoutePrefix("api/performancereviews")]
     public class PerformanceReviewController : ApiController
     {
+        public IPerformanceReviewDataService _performanceReviewDataService;
+
+        public PerformanceReviewController()
+        {
+            _performanceReviewDataService = new PerformanceReviewDataService();
+        }
+
         [Route("")]
         [HttpGet]
         public List<PerformanceReview> GetAll()
         {
-            return new List<PerformanceReview>();
+            return _performanceReviewDataService.GetAllPerformanceReviews();
         }
 
         [Route("{performanceReviewId:Guid}")]
         [HttpGet]
         public PerformanceReview Get(Guid performanceReviewId)
         {
-            return new PerformanceReview();
+            return _performanceReviewDataService.GetPerformanceReview(performanceReviewId);
         }
 
         [Route("")]
         [HttpPost]
-        public string Add(PerformanceReview performanceReview)
+        public PerformanceReview Post(PerformanceReview performanceReview)
         {
-            return "ADDED PERFORMANCEREVIEW";
+            return _performanceReviewDataService.AddPerformanceReview(performanceReview);
         }
 
         [Route("")]
         [HttpPut]
-        public string Update(Guid performanceReviewId, PerformanceReview performanceReview)
+        public PerformanceReview Update(Guid performanceReviewId, PerformanceReview performanceReview)
         {
-            return "UPDATED PERFORMANCEREVIEW";
+            return _performanceReviewDataService.UpdatePerformanceReview(performanceReviewId, performanceReview);
         }
     }
 }

@@ -11,43 +11,43 @@ namespace FeedbackReviewer.Tests.MockServices
     class MockEmployeeDataService : IEmployeeDataService
     {
 
-        public Dictionary<Guid, Employee> Employees;
+        private Dictionary<Guid, Employee> _employees;
 
         public MockEmployeeDataService()
         {
-            Employees = new Dictionary<Guid, Employee>();
+            _employees = new Dictionary<Guid, Employee>();
         }
 
         public Employee AddEmployee(Employee employee)
         {
-            Employees.Add(employee.EmployeeId, employee);
+            _employees.Add(employee.EmployeeId, employee);
             return employee;
         }
 
         public void DeleteEmployee(Guid employeeId)
         {
-            Employees.Remove(employeeId);
+            _employees.Remove(employeeId);
         }
 
         public List<Employee> GetAllEmployees()
         {
             var returnlist = new List<Employee>();
-            foreach(var key in Employees.Keys)
+            foreach(var key in _employees.Keys)
             {
-                returnlist.Add(Employees[key]);
+                returnlist.Add(_employees[key]);
             }
             return returnlist;
         }
 
         public Employee GetEmployee(Guid employeeId)
         {
-            return Employees[employeeId];
+            return _employees[employeeId];
         }
 
         public Employee UpdateEmployee(Guid employeeId, Employee employee)
         {
-            Employees[employeeId] = employee;
-            return Employees[employeeId];
+            _employees[employeeId] = employee;
+            return _employees[employeeId];
         }
     }
 }
