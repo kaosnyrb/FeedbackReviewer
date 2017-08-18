@@ -1,4 +1,5 @@
 ﻿using FeedbackReviewer.Models;
+using FeedbackReviewer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,39 +12,46 @@ namespace FeedbackReviewer.Controllers
     [RoutePrefix("api/employees")]
     public class EmployeesController : ApiController
     {
+        public IEmployeeDataService _employeeDataService;
+
+        public EmployeesController()
+        {
+            _employeeDataService = new EmployeeDataService();
+        }
+
         [Route("")]
         [HttpGet]
         public List<Employee> GetEmployees()
         {
-            return new List<Employee>();
+            return _employeeDataService.GetAllEmployees();
         }
 
         [Route("{EmployeeId:Guid}")]
         [HttpGet]
-        public string Get(Guid EmployeeId)
+        public Employee Get(Guid EmployeeId)
         {
-            return EmployeeId.ToString();
+            return _employeeDataService.GetEmployee(EmployeeId);
         }
 
         [Route("")]
         [HttpPost]
-        public string Add(Employee employee)
+        public Employee Post(Employee employee)
         {
-            return "ADDED USER";
+            return _employeeDataService.AddEmployee(employee);
         }
 
-        [Route("")]
+        [Route("{EmployeeId:Guid}")]
         [HttpPut]
-        public string Update(Guid EmployeeId, Employee employee)
+        public Employee Put(Guid EmployeeId, Employee employee)
         {
-            return "UPDATED USER";
+            return _employeeDataService.UpdateEmployee(EmployeeId, employee);
         }
 
-        [Route("")]
+        [Route("{EmployeeId:Guid}")]
         [HttpDelete]
-        public string Delete(Guid EmployeeId)
+        public void Delete(Guid EmployeeId)
         {
-            return "DELETED USER";
+            _employeeDataService.DeleteEmployee(EmployeeId);
         }
     }
 }

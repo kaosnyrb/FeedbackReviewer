@@ -13,7 +13,7 @@ namespace FeedbackReviewer.Controllers
     {
         [Route("")]
         [HttpGet]
-        public List<PerformanceReview> GetPerformanceReviews()
+        public List<PerformanceReview> GetAll()
         {
             return new List<PerformanceReview>();
         }
@@ -37,13 +37,6 @@ namespace FeedbackReviewer.Controllers
         public string Update(Guid performanceReviewId, PerformanceReview performanceReview)
         {
             return "UPDATED PERFORMANCEREVIEW";
-        }
-
-        [Route("{performanceReviewId:Guid}/assign")]
-        [HttpPost]
-        public string Assign(Guid performanceReviewId, Guid EmployeeId)
-        {
-            return "ASSIGNED TO " + EmployeeId;
         }
     }
 }

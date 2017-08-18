@@ -7,6 +7,9 @@ namespace FeedbackReviewer.Models
 {
     public class Employee
     {
-        Guid EmployeeId;
+        public Guid EmployeeId { get; set; }
+
+        public string Name { get; set; }
+
     }
 }
