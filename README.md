@@ -1,39 +1,44 @@
 # FeedbackReviewer
 A RESTful Tool for capturing performance feedback running on a .NET stack with a MS Sql server backend.
 
-#Hosted on AWS
+# Hosted on AWS
 http://kaosnyrb.com/RewardTest/swagger/ui/index
 
 
-#Technolgies used
+# Technolgies used
+
 ASP.NET Web API
+
     Web API makes it easy to create new web services and plays nicely with MS SQL
 
 MS SQL
+
     Reliable place to store data. Data is relational so a sql database makes the most sense.
 
 IIS
+
     Easiest way to host Web API projects
 
 Swagger/Swashbuckle
+
     Smart tooling that allows easy exploring of endpoints and data models. Very useful for implementing services.
 
-#Model Design
+# Model Design
 
-	Employee
+	Employee:
 		ID
 		Name
 
-	Review (Including feedback)
+	Review (Including feedback):
 		ID
 		Feedback
 
-    Assignment link between Employee it's for and the review
+    Assignment link between Employee it's for and the review:
 		ID
 		Reviewing Employee ID
 		Review ID
 
-#Endpoints
+# Endpoints
     Employee:
 		GetAll
 		Get
