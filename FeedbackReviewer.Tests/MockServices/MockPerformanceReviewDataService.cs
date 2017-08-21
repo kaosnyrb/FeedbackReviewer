@@ -38,9 +38,9 @@ namespace FeedbackReviewer.Tests.MockServices
             return _performanceReviews[performanceReviewId];
         }
 
-        public PerformanceReview UpdatePerformanceReview(Guid performanceReviewId, PerformanceReview performanceReview)
+        public PerformanceReview UpdatePerformanceReview(Guid performanceReviewId, string feedback)
         {
-            _performanceReviews[performanceReviewId] = performanceReview;
+            _performanceReviews[performanceReviewId].Feedback = feedback;
             return _performanceReviews[performanceReviewId];
         }
     }

@@ -12,6 +12,8 @@ namespace FeedbackReviewer.Services
     {
         public PerformanceReview AddPerformanceReview(PerformanceReview performanceReview)
         {
+            //The service owns the Guid for any new objects.
+            performanceReview.PerformanceReviewId = Guid.NewGuid();
             using (var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["FeedbackReviewerDB"].ConnectionString))
             {
                 myConnection.Open();
@@ -80,23 +82,22 @@ namespace FeedbackReviewer.Services
             return performanceReview;
         }
 
-        public PerformanceReview UpdatePerformanceReview(Guid performanceReviewId, PerformanceReview performanceReview)
+        public PerformanceReview UpdatePerformanceReview(Guid performanceReviewId, string feedback)
         {
             using (var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["FeedbackReviewerDB"].ConnectionString))
             {
                 myConnection.Open();
-                string sqlCommand = @"UPDATE [PerformanceReviews] SET [EmployeeId] = @EmployeeId, [Feedback] = @Feedback WHERE Id = @Id";
+                string sqlCommand = @"UPDATE [PerformanceReviews] SET [Feedback] = @Feedback WHERE Id = @Id";
                 using (SqlCommand command = new SqlCommand(sqlCommand, myConnection))
                 {
                     command.Parameters.Add(new SqlParameter("Id", System.Data.SqlDbType.UniqueIdentifier) { Value = performanceReviewId });
-                    command.Parameters.Add(new SqlParameter("EmployeeId", System.Data.SqlDbType.UniqueIdentifier) { Value = performanceReview.EmployeeId });
-                    command.Parameters.Add(new SqlParameter("Feedback", System.Data.SqlDbType.NVarChar) { Value = performanceReview.Feedback });
+                    command.Parameters.Add(new SqlParameter("Feedback", System.Data.SqlDbType.NVarChar) { Value = feedback });
 
                     command.ExecuteNonQuery();
                 }
                 myConnection.Close();
             }
-            return performanceReview;
+            return GetPerformanceReview(performanceReviewId);
         }
     }
 }

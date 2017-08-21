@@ -12,6 +12,9 @@ namespace FeedbackReviewer.Services
     {
         public Assignment AddAssignment(Assignment assignment)
         {
+            //The service owns the Guid for any new objects.
+            assignment.AssignmentId = Guid.NewGuid();
+
             using (var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["FeedbackReviewerDB"].ConnectionString))
             {
                 myConnection.Open();

@@ -52,14 +52,13 @@ namespace FeedbackReviewer.Tests.Controllers
             var employeeId = Guid.NewGuid();
 
             target.Post(new Models.PerformanceReview { EmployeeId = employeeId, PerformanceReviewId = performanceReviewId });
-
-            var newEmployeeId = Guid.NewGuid();
-            target.Update(performanceReviewId, new Models.PerformanceReview { EmployeeId = newEmployeeId, PerformanceReviewId = performanceReviewId });
+            
+            target.Update(performanceReviewId, "");
 
             var result = target.Get(performanceReviewId);
 
             Assert.IsTrue(result.PerformanceReviewId == performanceReviewId);
-            Assert.IsTrue(result.EmployeeId == newEmployeeId);
+            Assert.IsTrue(result.EmployeeId == employeeId);
         }
     }
 }

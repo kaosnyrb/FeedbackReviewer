@@ -15,6 +15,6 @@ namespace FeedbackReviewer.Services
 
         PerformanceReview AddPerformanceReview(PerformanceReview performanceReview);
 
-        PerformanceReview UpdatePerformanceReview(Guid performanceReviewId, PerformanceReview performanceReview);
+        PerformanceReview UpdatePerformanceReview(Guid performanceReviewId, string feedback);
     }
 }

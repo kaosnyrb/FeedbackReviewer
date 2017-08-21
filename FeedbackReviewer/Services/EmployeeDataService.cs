@@ -12,6 +12,8 @@ namespace FeedbackReviewer.Services
     {
         public Employee AddEmployee(Employee employee)
         {
+            //The service owns the Guid for any new objects.
+            employee.EmployeeId = Guid.NewGuid();
             using (var myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["FeedbackReviewerDB"].ConnectionString))
             {
                 myConnection.Open();
